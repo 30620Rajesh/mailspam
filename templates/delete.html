@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .warning {
+            color: rgb(0, 255, 81);
+            font-weight: bold;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete Account</h1>
+    <p class="warning">Are you sure you want to delete your account?</p>
+    <p>This action is irreversible and all your data will be lost.</p>
+
+    <form method="POST">
+        <button type="submit" style="background-color: red; color: white;">Delete My Account</button>
+    </form>
+    
+    <a href="{{ url_for('user_dashboard') }}">Cancel</a>
+</body>
+</html>

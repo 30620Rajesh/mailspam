@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Email</title>
+</head>
+<body>
+    <h1>{{ email[1] }}</h1> <!-- Display the subject -->
+    <p><strong>From:</strong> {{ email[5] }}</p> <!-- Display the sender's user ID -->
+    <p><strong>Received on:</strong> {{ email[3] }}</p> <!-- Display the timestamp -->
+    <p><strong>Label:</strong> {{ email[4] if email[4] else 'No Label' }}</p> <!-- Display the label -->
+    <p><strong>Message:</strong></p>
+    <p>{{ email[2] }}</p> <!-- Display the email body -->
+
+    <a href="{{ url_for('inbox') }}">Back to Inbox</a> <!-- Link to go back to the inbox -->
+</body>
+</html>

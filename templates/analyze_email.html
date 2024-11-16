@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Analysis</title>
+    <style>
+        body {
+            background-color: #f8f9fa; 
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #007bff; 
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .dashboard-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Email Spam Message Classifier</h1>
+        <form method="POST" action="{{ url_for('email_analysis') }}">
+            <textarea class="form-control" id="mail" name="mail" rows="3" placeholder="Enter your mail context here..."></textarea>
+            <button type="submit" class="btn btn-primary">Analyze</button>
+        </form>
+
+        {% if classify is not none %}
+            <div class="mt-4">
+                {% if classify == 'Spam' %}
+                    <div class="alert alert-danger">This is a spam mail</div>
+                {% elif classify == 'Ham' %}
+                    <div class="alert alert-success">This is a ham mail</div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <a href="{{ url_for('analysis_history_page') }}" class="dashboard-link">View Analysis History</a>
+        <a href="user-dashboard" class="back-button">Back to User Dashboard</a>
+    </div>
+</body>
+</html>

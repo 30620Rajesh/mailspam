@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sent Emails</title>
+    <script>
+        // JavaScript function to confirm the action (e.g. delete email) before submitting
+        function confirmAction(action, emailId) {
+            if (action === 'delete') {
+                const confirmDelete = confirm("Are you sure you want to delete this email?");
+                if (confirmDelete) {
+                    // Trigger the deletion if confirmed
+                    window.location.href = `/delete_sent_email/${emailId}`;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Sent Emails</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Receiver</th>
+                <th>Sent Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% extends "layout.html" %}
+
+            {% block content %}
+            <h2>Sent Emails</h2>
+            
+            {% if emails %}
+                <ul>
+                    {% for email in emails %}
+                        <li>
+                            <strong>To:</strong> {{ email[1] }}<br>
+                            <strong>Subject:</strong> {{ email[2] }}<br>
+                            <strong>Message:</strong> {{ email[3] }}<br>
+                            <strong>Sent on:</strong> {{ email[4] }}<br><br>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You have no sent emails.</p>
+            {% endif %}
+            {% endblock %}
+            
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

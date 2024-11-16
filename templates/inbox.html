@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+            margin-top: 20px;
+        }
+
+        /* Navigation styles */
+        /* Navigation bar styles */
+nav {
+    display: flex;
+    justify-content: center; /* Center-aligns the navigation links */
+    background-color: #007bff; /* Blue background color */
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Sets font for consistency */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px; /* Spacing between links */
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+nav a:hover {
+    color: #ffdd57; /* Change color on hover */
+    text-decoration: underline; /* Adds underline on hover */
+    transform: scale(1.1); /* Slightly enlarges the link on hover */
+}
+
+/* Optional: active link styles */
+nav a.active {
+    color: #ffdd57; /* Highlights the active link */
+    text-decoration: underline;
+}
+
+
+        /* Table styles */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Button styles */
+        .btn {
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <a href="{{ url_for('user_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('compose') }}">Compose Mail</a>
+        <a href="{{ url_for('logout') }}">Logout</a>  
+    </nav>
+    
+    
+    <h1>Inbox</h1>
+    {% if emails %}
+    <table>
+        <tr>
+            <th>Sender</th>
+            <th>Subject</th>
+            <th>Received On</th>
+            <th>Body Preview</th>
+            <th>Label</th>
+            <th>Action</th>
+        </tr>
+        {% for email in emails %}
+        <tr>
+            <td>{{ email[5] }}</td>
+            <td>{{ email[1] }}</td>
+            <td>{{ email[3] }}</td>
+            <td>{{ email[2][:100] }}...</td>
+            <td>{{ email[4] if email[4] else 'No Label' }}</td>
+            <td>
+                <form action="{{ url_for('view_email', email_id=email[0]) }}" method="GET" style="display: inline;">
+                    <button type="submit" class="btn btn-primary">View</button>
+                </form>
+                <form action="{{ url_for('delete_email', email_id=email[0]) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p style="text-align: center; color: #666;">No emails found.</p>
+    {% endif %}
+</body>
+</html>

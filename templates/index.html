@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Detection</title>
+    <style>
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #B5EAD7, #C7CEEA); 
+    color: #333;
+}
+
+/* Main background container */
+.background {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s ease;
+}
+
+.background:hover {
+    transform: scale(1.02);
+}
+
+/* Header styling */
+header h1 {
+    font-size: 2.8em;
+    color: #444;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, #FFB6B9, #FFDAC1); 
+    -webkit-background-clip: text; /* Clips the background to the text */
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Navigation buttons */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.button {
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(90deg, #A0CED9, #A8E6CF); 
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0px 4px 15px rgba(160, 206, 217, 0.3);
+    transition: background 0.4s, box-shadow 0.4s, transform 0.3s;
+}
+
+.button:hover {
+    background: linear-gradient(90deg, #A8E6CF, #A0CED9);
+    box-shadow: 0px 6px 20px rgba(168, 230, 207, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Info sections styling */
+.info-section {
+    text-align: left;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    color: #444;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #E7EAF6, #FFF4E6); /* Light lavender to peach */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+}
+
+.info-section:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h2 {
+    font-size: 1.8em;
+    color: #A0CED9;
+    margin-bottom: 12px;
+    border-left: 4px solid #A0CED9;
+    padding-left: 8px;
+}
+
+.info-section p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+}
+
+
+
+/* Add subtle animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.background, .button, .info-section {
+    animation: fadeIn 0.8s ease-in-out both;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <header>
+            <h1>Email Spam Detection</h1>
+            <p>Protect your inbox from unwanted messages and spam.</p>
+        </header>
+
+        <!-- Navigation Links -->
+        <nav>
+            <a href="{{ url_for('login') }}" class="button">User Login</a>
+            <a href="{{ url_for('register') }}" class="button">Register</a>
+            <a href="{{ url_for('admin_login') }}" class="button">Admin Login</a>
+        </nav>
+
+        <section class="info-section" id="about-us">
+            <h2>About Us</h2>
+            <p>Our mission is to help users filter out spam and unwanted emails, ensuring a safe and clean inbox experience. Using advanced machine learning techniques, our email spam detection system helps to identify and prevent spam, phishing, and other unwanted communications.</p>
+        </section>
+
+        <section class="info-section" id="what-is-spam">
+            <h2>What is Spam Mail?</h2>
+            <p>Spam mail consists of unsolicited messages, often of commercial nature, that are sent in bulk to a large number of users. These messages can include advertisements, phishing attempts, and harmful links designed to deceive users or spread malware. Our spam detection system is here to help you identify and block these unwanted messages.</p>
+        </section>
+    </div>
+
+</body>
+</html>
